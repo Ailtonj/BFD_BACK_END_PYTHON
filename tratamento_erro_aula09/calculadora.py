@@ -1,5 +1,5 @@
 
-# funções
+# declarando as funções
 def adicao(a, b):
     return a + b
 
@@ -19,12 +19,14 @@ def divisao(a, b):
 # recebendo os numeros
 try:
     num1 = float(input("Informe o primeiro número: "))
-except:
+except ValueError:
+    # Caso usuario degite uma letra no lugar do numero
     print("Erro: Valor inválido.")
 else:
     try:
         num2 = float(input("Informe o segundo número: "))
-    except:
+    except ValueError:
+        # caso usuario digite uma letra no ligar do numero
         print("Erro: valor inválido.")
 
     # recebendo a operação
@@ -44,10 +46,17 @@ else:
                 case '/':
                     resultado = divisao(num1, num2)
                 case _:
-                    print("Erro: Operação inválida")
+                    # caso o usuario digitou alguma operação invalida
+                    raise ValueError("Operacao Inválida")
         except ZeroDivisionError:
+            # Caso o usuario digitou o segundo numero 0 e escolheu a divisão
             print("Erro: Divisão por zero")
+        except ValueError:
+            # Caso o usuario informou uma operacao inválida
+            print("Erro: Operacao inválida.")
         else:
+            # Imprimindo o resultado
             print(f"{num1} {operacao} {num2} = {resultado:.2f}")
 finally:
+    # finalizando o programa
     print("Fim do programa")
